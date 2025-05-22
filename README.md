@@ -1,0 +1,2 @@
+# mydevice
+web devices capabilities
