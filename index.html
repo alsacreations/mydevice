@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html id="html" lang="fr">
+  <!-- Head file -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Titre -->
+    <title>mydevice.io : capacités des appareils web</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    <!-- Feuille de style principale -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body id="body" class="layout--mydevice">
+    <!-- En-tête -->
+    <header class="header">
+      <!-- Logo et titre principal -->
+      <a href="index.html#" aria-label="Accueil de mydevice.io">
+        <h1>
+          <img
+            src="assets/img/mydevice-logo.svg"
+            alt="Mydevice.io"
+            width="243"
+            height="36"
+          />
+        </h1>
+      </a>
+    </header>
+    <!-- Fin de l'en-tête -->
+
+    <!-- Contenu principal -->
+    <main>
+      <!-- Section Hero -->
+      <section class="hero bg--gradient">
+        <div class="rule"></div>
+        <div class="container">
+          <span class="icon-arrow-left"></span>
+          <div class="hero-heading animate animated txtcenter">
+            <p class="text-vw">ma largeur de fenêtre est :</p>
+            <p id="viewportwidth" class="pixel-vw"></p>
+            <p id="viewportwidthem" class="rem-vw"></p>
+          </div>
+          <span class="icon-arrow-right"></span>
+        </div>
+      </section>
+      <!-- Fin de la section Hero -->
+
+      <section class="bg--darker metrics">
+        <div class="container mw--xxl">
+          <h2 class="txtcenter">Métrique de l'écran</h2>
+
+          <div class="metrics-grid">
+            <div class="box bg--dark">
+              <h3 class="metrics-title">Taille</h3>
+              <ul class="unstyled values">
+                <li id="screenwidth">JS screen.width : <em></em></li>
+                <li id="screenheight">JS screen.height : <em></em></li>
+                <li class="cssdevwidth">@media (device-width) : <em></em></li>
+                <li class="cssdevheight">@media (device-height) : <em></em></li>
+              </ul>
+            </div>
+
+            <div class="box bg--dark">
+              <h3 class="metrics-title">Ratio de pixel</h3>
+              <ul class="unstyled values">
+                <li class="cssratio">Ratio de pixel CSS : <em></em></li>
+                <li id="jsratio">Ratio de pixel JS : <em></em></li>
+              </ul>
+            </div>
+
+            <div class="box bg--dark">
+              <h3 class="metrics-title">Densité</h3>
+              <ul class="unstyled values">
+                <li id="jsdpi">Résolution (dpi) : <em></em></li>
+                <li id="jsdppx">Résolution (dppx) : <em></em></li>
+                <li id="jsdpcm">Résolution (dpcm) : <em></em></li>
+              </ul>
+            </div>
+
+            <div class="box bg--dark">
+              <h3 class="metrics-title">Divers</h3>
+              <ul class="unstyled values">
+                <li id="rfs">Taille de police racine : <em></em></li>
+                <li class="cssorient">Orientation : <em></em></li>
+                <li id="deviceaspectratio">
+                  Ratio d'aspect de l'appareil : <em></em>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg--dark browser-features">
+        <div class="container">
+          <h2 class="txtcenter">User agent</h2>
+
+          <div class="bg--darker mw--m pam">
+            <p class="txtcenter mbn" id="ua"></p>
+          </div>
+
+          <h2 class="txtcenter">Viewport</h2>
+
+          <div class="bg--darker mw--m pam">
+            <p class="txtcenter mbn" lang="en">
+              &lt;meta name="viewport" content="width=device-width,
+              initial-scale=1.0"&gt;
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="compare-devices" id="compare-devices">
+        <div class="container">
+          <h2 class="txtcenter">Comparer les appareils</h2>
+
+          <div class="mw--s">
+            <p class="txtcenter">
+              Les appareils mobiles, dans le cadre du Responsive Web Design, se
+              rapportent à une valeur fondamentale qui est la largeur CSS (ou
+              "device-width"), exprimée en pixels indépendants du dispositif
+              CSS. Cette valeur dépend à la fois du navigateur et des paramètres
+              de zoom de l'utilisateur.
+            </p>
+            <p class="txtcenter">
+              <strong
+                ><a href="https://yesviz.com/viewport/"
+                  >Trouver la taille du viewport de n'importe quel appareil sur
+                  Yesviz.com</a
+                ></strong
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ref-picture bg--gray">
+        <div class="container txtcenter">
+          <h2>Image de référence</h2>
+
+          <div class="size">
+            <span class="icon-arrow-left"></span>
+            <p class="txtcenter">320px</p>
+            <span class="icon-arrow-right"></span>
+          </div>
+
+          <img
+            src="assets/img/ref-picture.png"
+            alt="Image de référence responsive 320px"
+          />
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer bg--primary txtcenter">
+      <div class="mw--s">
+        <p class="">
+          mydevice.io est un projet
+          <span title="cela signifie génial !" lang="en">fifou</span> conçu par
+          Raphaël, Rodolphe, Laurène, Olivier de
+          <a class="footer-link" href="https://alsacreations.fr"
+            >alsacreations</a
+          >.
+        </p>
+        <p>
+          <a class="link" href="https://alsacreations.fr" target="_blank"
+            ><img
+              src="assets/img/alsacreations-logo.svg"
+              alt="Logo Alsacréations"
+          /></a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/mydevice.js"></script>
+  </body>
+</html>
