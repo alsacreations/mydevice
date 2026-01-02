@@ -202,7 +202,7 @@ for (index = 0; index < tabslinks.length; index++) {
 // --- Root font size
 var rfsstyle = parseFloat(getComputedStyle(document.documentElement).fontSize)
 document.getElementById("rfs").innerHTML =
-  "Root font size&#8239;: <em>" + rfsstyle + "px</em>"
+  "Root font size <em>" + rfsstyle + "px</em>"
 
 // Pointer events
 if (window.navigator.pointerEnabled) {
@@ -214,32 +214,32 @@ var sw = screen.width
 var sh = screen.height
 // --- Screen and Window size
 document.getElementById("screensize").innerHTML =
-  "Taille d'écran&#8239;: <em>" + sw + " x " + sh + "</em>"
+  "Taille d'écran <em>" + sw + " x " + sh + "</em>"
 
 var ww = window.innerWidth
 var wh = window.innerHeight
 document.getElementById("windowsize").innerHTML =
-  "Taille de fenêtre&#8239;: <em>" + ww + " x " + wh + "</em>"
+  "Taille de fenêtre <em>" + ww + " x " + wh + "</em>"
 
 // resolution
 var jsdpi = res.dpi()
 jsdpi = parseFloat(jsdpi.toFixed(2))
 document.getElementById("jsdpi").innerHTML =
-  "Resolution (dpi)&#8239;: <em>" + jsdpi + "dpi</em>"
+  "Resolution (dpi) <em>" + jsdpi + "dpi</em>"
 var jsdppx = res.dppx()
 jsdppx = parseFloat(jsdppx.toFixed(2))
 document.getElementById("jsdppx").innerHTML =
-  "Resolution (dppx)&#8239;: <em>" + jsdppx + "dppx</em>"
+  "Resolution (dppx) <em>" + jsdppx + "dppx</em>"
 var jsdpcm = res.dpcm()
 jsdpcm = parseFloat(jsdpcm.toFixed(2))
 document.getElementById("jsdpcm").innerHTML =
-  "Resolution (dpcm)&#8239;: <em>" + jsdpcm + "dpcm</em>"
+  "Resolution (dpcm) <em>" + jsdpcm + "dpcm</em>"
 
 // aspect ratio
 var deviceaspectratio = verge.aspect(screen)
 deviceaspectratio = parseFloat(deviceaspectratio.toFixed(2))
 document.getElementById("deviceaspectratio").innerHTML =
-  "Device Aspect-Ratio&#8239;: <em>" + deviceaspectratio + "</em>"
+  "Device Aspect-Ratio <em>" + deviceaspectratio + "</em>"
 
 // viewport width
 var viewportwidth = verge.viewportW()
@@ -259,7 +259,7 @@ window.addEventListener("resize", function () {
   var ww = window.innerWidth
   var wh = window.innerHeight
   document.getElementById("windowsize").innerHTML =
-    "Taille de fenêtre&#8239;: <em>" + ww + " x " + wh + "</em>"
+    "Taille de fenêtre <em>" + ww + " x " + wh + "</em>"
 
   // viewport width
   var viewportwidth = verge.viewportW()
@@ -270,21 +270,6 @@ window.addEventListener("resize", function () {
   viewportwidthem = viewportwidthem.toFixed(0)
   document.getElementById("viewportwidthem").innerHTML =
     "<em>" + viewportwidthem + "em</em>"
-
-  /*
-  // window.innerWidth
-  var dw = window.innerWidth;
-  var dh = window.innerHeight;
-  document.getElementById('devicewidth').innerHTML = 'JS window.innerWidth : <em>' + dw + 'px</em>';
-  // document.body.clientWidth
-  var bw = document.body.clientWidth;
-  var bh = document.body.clientHeight;
-  document.getElementById('clientwidth').innerHTML = 'JS body.clientWidth : <em>' + bw + 'px</em>';
-  // screen.availWidth
-  var aw = screen.availWidth;
-  var ah = screen.availHeight;
-  document.getElementById('availwidth').innerHTML = 'JS screen.availWidth : <em>' + aw + 'px</em>';
-  */
 })
 
 // pixel ratio
@@ -293,7 +278,7 @@ var pxr =
   window.screen.availWidth / document.documentElement.clientWidth
 pxr = parseFloat(pxr.toFixed(4))
 document.getElementById("jsratio").innerHTML =
-  "Pixel ratio (JS)&#8239;: <em>" + pxr + "</em>"
+  "Pixel ratio (JS) <em>" + pxr + "</em>"
 
 // user agent
 if (navigator.userAgent)
@@ -313,12 +298,10 @@ function displaySafeAreas() {
     .getPropertyValue("--sal")
     .trim()
 
-  document.getElementById("sat").innerHTML = "Top&#8239;: <em>" + sat + "</em>"
-  document.getElementById("sar").innerHTML =
-    "Right&#8239;: <em>" + sar + "</em>"
-  document.getElementById("sab").innerHTML =
-    "Bottom&#8239;: <em>" + sab + "</em>"
-  document.getElementById("sal").innerHTML = "Left&#8239;: <em>" + sal + "</em>"
+  document.getElementById("sat").innerHTML = "Top <em>" + sat + "</em>"
+  document.getElementById("sar").innerHTML = "Right <em>" + sar + "</em>"
+  document.getElementById("sab").innerHTML = "Bottom <em>" + sab + "</em>"
+  document.getElementById("sal").innerHTML = "Left <em>" + sal + "</em>"
 }
 displaySafeAreas()
 // Battery Status API
@@ -328,26 +311,26 @@ function displayBatteryStatus() {
       var level = Math.round(battery.level * 100)
       var charging = battery.charging ? "en charge" : "sur batterie"
       document.getElementById("battery").innerHTML =
-        "Batterie&#8239;: <em>" + level + "% (" + charging + ")</em>"
+        "Batterie <em>" + level + "% (" + charging + ")</em>"
 
       // Update on battery change
       battery.addEventListener("levelchange", function () {
         var level = Math.round(battery.level * 100)
         var charging = battery.charging ? "en charge" : "sur batterie"
         document.getElementById("battery").innerHTML =
-          "Batterie&#8239;: <em>" + level + "% (" + charging + ")</em>"
+          "Batterie <em>" + level + "% (" + charging + ")</em>"
       })
 
       battery.addEventListener("chargingchange", function () {
         var level = Math.round(battery.level * 100)
         var charging = battery.charging ? "en charge" : "sur batterie"
         document.getElementById("battery").innerHTML =
-          "Batterie&#8239;: <em>" + level + "% (" + charging + ")</em>"
+          "Batterie <em>" + level + "% (" + charging + ")</em>"
       })
     })
   } else {
     document.getElementById("battery").innerHTML =
-      "Batterie&#8239;: <em>Non supporté</em>"
+      "Batterie <em>Non supporté</em>"
   }
 }
 displayBatteryStatus()
@@ -427,10 +410,47 @@ function detectPointerType() {
   }
 
   document.getElementById("pointer-type").innerHTML =
-    "Pointeur <span class='discrete'> (pointer:" +
+    "Pointeur <span class='discrete'> (pointer: " +
     pointerValue +
     ")</span> <em>" +
     pointerType +
     "</em>"
 }
 detectPointerType()
+
+// Browser version detection
+function detectBrowserVersion() {
+  var ua = navigator.userAgent
+  var bName = "Inconnu"
+  var bVer = ""
+
+  if (ua.indexOf("Edg/") > -1) {
+    bName = "Edge"
+    bVer = ua.substring(ua.indexOf("Edg/") + 4)
+  } else if (ua.indexOf("OPR/") > -1 || ua.indexOf("Opera/") > -1) {
+    bName = "Opera"
+    bVer =
+      ua.indexOf("OPR/") > -1
+        ? ua.substring(ua.indexOf("OPR/") + 4)
+        : ua.substring(ua.indexOf("Opera/") + 6)
+  } else if (ua.indexOf("Chrome/") > -1) {
+    bName = "Chrome"
+    bVer = ua.substring(ua.indexOf("Chrome/") + 7)
+  } else if (ua.indexOf("Firefox/") > -1) {
+    bName = "Firefox"
+    bVer = ua.substring(ua.indexOf("Firefox/") + 8)
+  } else if (ua.indexOf("Safari/") > -1) {
+    bName = "Safari"
+    bVer = ua.substring(ua.indexOf("Version/") + 8)
+  } else if (ua.indexOf("MSIE") > -1 || !!document.documentMode == true) {
+    bName = "IE"
+    // Simplified version for IE
+    bVer = ua.indexOf("MSIE") > -1 ? ua.substring(ua.indexOf("MSIE") + 5) : "11"
+  }
+
+  if (bVer.indexOf(" ") > -1) bVer = bVer.substring(0, bVer.indexOf(" "))
+
+  document.getElementById("browser-version").innerHTML =
+    "Navigateur <em>" + bName + " " + bVer + "</em>"
+}
+detectBrowserVersion()
