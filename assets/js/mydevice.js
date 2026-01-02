@@ -227,12 +227,14 @@ for (
 // screen.width
 var sw = screen.width
 var sh = screen.height
-document.getElementById("screenwidth").innerHTML =
-  "JS screen.width : <em>" + sw + "px</em>"
+// --- Screen and Window size
+document.getElementById("screensize").innerHTML =
+  "Taille d'écran : <em>" + sw + " x " + sh + "</em>"
 
-// screen.height
-document.getElementById("screenheight").innerHTML =
-  "JS screen.height : <em>" + sh + "px</em>"
+var ww = window.innerWidth
+var wh = window.innerHeight
+document.getElementById("windowsize").innerHTML =
+  "Taille de fenêtre : <em>" + ww + " x " + wh + "</em>"
 
 // resolution
 var jsdpi = res.dpi()
@@ -267,6 +269,12 @@ document.getElementById("viewportwidthem").innerHTML =
 
 // addEventlistener on resize
 window.addEventListener("resize", function () {
+  // Window size
+  var ww = window.innerWidth
+  var wh = window.innerHeight
+  document.getElementById("windowsize").innerHTML =
+    "Taille de fenêtre : <em>" + ww + "px x " + wh + "px</em>"
+
   // viewport width
   var viewportwidth = verge.viewportW()
   document.getElementById("viewportwidth").innerHTML =
@@ -299,7 +307,7 @@ var pxr =
   window.screen.availWidth / document.documentElement.clientWidth
 pxr = parseFloat(pxr.toFixed(4))
 document.getElementById("jsratio").innerHTML =
-  "JS pixel-ratio : <em>" + pxr + "</em>"
+  "Pixel ratio (JS) : <em>" + pxr + "</em>"
 
 // user agent
 if (navigator.userAgent)
