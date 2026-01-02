@@ -209,21 +209,6 @@ if (window.navigator.pointerEnabled) {
   document.getElementById("pointerevents").className = "supported"
 }
 
-for (
-  var index = 0;
-  index < document.querySelector("html").classList.length;
-  index++
-) {
-  var item = document.querySelector("html").classList[index]
-  if (item.length > 0) {
-    var target = null
-    target = document.querySelector(".js-modernizr li." + item)
-    if (target) {
-      target.classList.add("supported")
-    }
-  }
-}
-
 // screen.width
 var sw = screen.width
 var sh = screen.height
