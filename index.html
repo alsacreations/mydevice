@@ -11,7 +11,7 @@
       content="IE=edge" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
 
     <!-- Titre -->
     <title>mydevice.io : capacités des appareils web</title>
@@ -82,10 +82,11 @@
             </div>
 
             <div class="box bg--dark">
-              <h3 class="metrics-title">Pixel ratio</h3>
+              <h3 class="metrics-title">Ratios</h3>
               <ul class="unstyled values">
                 <li class="cssratio">Pixel ratio (CSS) : <em></em></li>
                 <li id="jsratio">Pixel ratio (JS) : <em></em></li>
+                <li id="deviceaspectratio">Device ratio : <em></em></li>
               </ul>
             </div>
 
@@ -99,13 +100,20 @@
             </div>
 
             <div class="box bg--dark">
+              <h3 class="metrics-title">Safe Areas (Encoches)</h3>
+              <ul class="unstyled values">
+                <li id="sat">Top : <em></em></li>
+                <li id="sar">Right : <em></em></li>
+                <li id="sab">Bottom : <em></em></li>
+                <li id="sal">Left : <em></em></li>
+              </ul>
+            </div>
+
+            <div class="box bg--dark">
               <h3 class="metrics-title">Divers</h3>
               <ul class="unstyled values">
                 <li id="rfs">Taille de police racine : <em></em></li>
                 <li class="cssorient">Orientation : <em></em></li>
-                <li id="deviceaspectratio">
-                  Ratio d'aspect de l'appareil : <em></em>
-                </li>
               </ul>
             </div>
           </div>
@@ -129,7 +137,7 @@
               class="txtcenter mbn"
               lang="en">
               &lt;meta name="viewport" content="width=device-width,
-              initial-scale=1.0"&gt;
+              initial-scale=1, shrink-to-fit=no, viewport-fit=cover"&gt;
             </p>
           </div>
         </div>

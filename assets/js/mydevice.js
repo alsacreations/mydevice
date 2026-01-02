@@ -254,11 +254,12 @@ document.getElementById("viewportwidthem").innerHTML =
 
 // addEventlistener on resize
 window.addEventListener("resize", function () {
+  displaySafeAreas()
   // Window size
   var ww = window.innerWidth
   var wh = window.innerHeight
   document.getElementById("windowsize").innerHTML =
-    "Taille de fenêtre : <em>" + ww + "px x " + wh + "px</em>"
+    "Taille de fenêtre : <em>" + ww + " x " + wh + "</em>"
 
   // viewport width
   var viewportwidth = verge.viewportW()
@@ -297,3 +298,24 @@ document.getElementById("jsratio").innerHTML =
 // user agent
 if (navigator.userAgent)
   document.getElementById("ua").innerHTML = navigator.userAgent
+// Safe Areas
+function displaySafeAreas() {
+  var sat = getComputedStyle(document.documentElement)
+    .getPropertyValue("--sat")
+    .trim()
+  var sar = getComputedStyle(document.documentElement)
+    .getPropertyValue("--sar")
+    .trim()
+  var sab = getComputedStyle(document.documentElement)
+    .getPropertyValue("--sab")
+    .trim()
+  var sal = getComputedStyle(document.documentElement)
+    .getPropertyValue("--sal")
+    .trim()
+
+  document.getElementById("sat").innerHTML = "Top : <em>" + sat + "</em>"
+  document.getElementById("sar").innerHTML = "Right : <em>" + sar + "</em>"
+  document.getElementById("sab").innerHTML = "Bottom : <em>" + sab + "</em>"
+  document.getElementById("sal").innerHTML = "Left : <em>" + sal + "</em>"
+}
+displaySafeAreas()
