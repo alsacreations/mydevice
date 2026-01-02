@@ -49,7 +49,7 @@ You carefully provide accurate, factual, thoughtful answers, and excel at reason
 
 Always use modern CSS rules and selectors when possible:
 
-- Always use modern media queries range syntax (e.g., `@media (width >= 48rem)` over `@media (min-width: 48rem)`).
+- Always use modern media queries range syntax (e.g., `@media (width >= 48rem)` over `@media (width >= 48rem)`).
 - Always use modern CSS properties when possible.
 - Use modern selectors when it is usefull, such as `:has()`, `:is()`, `:where()`,.
 

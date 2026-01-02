@@ -285,7 +285,7 @@ textarea {
 }
 
 fieldset {
-  min-width: 0;
+  width >= 0;
   margin: 0;
   padding: 0;
   border: 0;
@@ -356,8 +356,8 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
-  /* avoid min-width: auto on flex and grid children */
-  min-width: 0;
+  /* avoid width >= auto on flex and grid children */
+  width >= 0;
   min-height: 0;
 }
 
@@ -1182,7 +1182,7 @@ ul.unstyled {
 /* -------------------------- */
 /* large screens */
 /* ------------- */
-@media (min-width: 992px) {
+@media (width >= 992px) {
   /* layouts for large screens */
   .large-hidden {
     display: none !important;
@@ -1241,7 +1241,7 @@ ul.unstyled {
 
 /* medium screens */
 /* -------------- */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (width >= 768px) and (max-width: 991px) {
   /* layouts for medium screens */
   .medium-hidden {
     display: none !important;
@@ -1300,7 +1300,7 @@ ul.unstyled {
 
 /* small screens */
 /* ------------- */
-@media (min-width: 576px) and (max-width: 767px) {
+@media (width >= 48rem) and (max-width: 767px) {
   /* layouts for small screens */
   .small-hidden {
     display: none !important;
@@ -1450,285 +1450,6 @@ ul.unstyled {
   }
 }
 
-/* --------------------------------------- */
-/* ==Grillade : ultra light Grid System    */
-/* --------------------------------------- */
-@media (min-width: 480px) {
-  [class*=" grid-"],
-  [class^="grid-"] {
-    display: grid;
-    grid-auto-flow: dense;
-  }
-
-  [class*=" grid-"].has-gutter,
-  [class^="grid-"].has-gutter {
-    grid-gap: 1rem;
-  }
-
-  [class*=" grid-"].has-gutter-l,
-  [class^="grid-"].has-gutter-l {
-    grid-gap: 2rem;
-  }
-
-  [class*=" grid-"].has-gutter-xl,
-  [class^="grid-"].has-gutter-xl {
-    grid-gap: 4rem;
-  }
-}
-
-@media (min-width: 480px) {
-  .autogrid,
-  .grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-  }
-
-  .autogrid.has-gutter,
-  .grid.has-gutter {
-    grid-column-gap: 1rem;
-  }
-
-  .autogrid.has-gutter-l,
-  .grid.has-gutter-l {
-    grid-column-gap: 2rem;
-  }
-
-  .autogrid.has-gutter-xl,
-  .grid.has-gutter-xl {
-    grid-column-gap: 4rem;
-  }
-}
-
-[class*="grid-2"] {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-[class*="grid-3"] {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-[class*="grid-4"] {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-[class*="grid-5"] {
-  grid-template-columns: repeat(5, 1fr);
-}
-
-[class*="grid-6"] {
-  grid-template-columns: repeat(6, 1fr);
-}
-
-[class*="grid-7"] {
-  grid-template-columns: repeat(7, 1fr);
-}
-
-[class*="grid-8"] {
-  grid-template-columns: repeat(8, 1fr);
-}
-
-[class*="grid-9"] {
-  grid-template-columns: repeat(9, 1fr);
-}
-
-[class*="grid-10"] {
-  grid-template-columns: repeat(10, 1fr);
-}
-
-[class*="grid-11"] {
-  grid-template-columns: repeat(11, 1fr);
-}
-
-[class*="grid-12"] {
-  grid-template-columns: repeat(12, 1fr);
-}
-
-[class*="col-1"] {
-  grid-column: auto/span 1;
-}
-
-[class*="row-1"] {
-  grid-row: auto/span 1;
-}
-
-[class*="col-2"] {
-  grid-column: auto/span 2;
-}
-
-[class*="row-2"] {
-  grid-row: auto/span 2;
-}
-
-[class*="col-3"] {
-  grid-column: auto/span 3;
-}
-
-[class*="row-3"] {
-  grid-row: auto/span 3;
-}
-
-[class*="col-4"] {
-  grid-column: auto/span 4;
-}
-
-[class*="row-4"] {
-  grid-row: auto/span 4;
-}
-
-[class*="col-5"] {
-  grid-column: auto/span 5;
-}
-
-[class*="row-5"] {
-  grid-row: auto/span 5;
-}
-
-[class*="col-6"] {
-  grid-column: auto/span 6;
-}
-
-[class*="row-6"] {
-  grid-row: auto/span 6;
-}
-
-[class*="col-7"] {
-  grid-column: auto/span 7;
-}
-
-[class*="row-7"] {
-  grid-row: auto/span 7;
-}
-
-[class*="col-8"] {
-  grid-column: auto/span 8;
-}
-
-[class*="row-8"] {
-  grid-row: auto/span 8;
-}
-
-[class*="col-9"] {
-  grid-column: auto/span 9;
-}
-
-[class*="row-9"] {
-  grid-row: auto/span 9;
-}
-
-[class*="col-10"] {
-  grid-column: auto/span 10;
-}
-
-[class*="row-10"] {
-  grid-row: auto/span 10;
-}
-
-[class*="col-11"] {
-  grid-column: auto/span 11;
-}
-
-[class*="row-11"] {
-  grid-row: auto/span 11;
-}
-
-[class*="col-12"] {
-  grid-column: auto/span 12;
-}
-
-[class*="row-12"] {
-  grid-row: auto/span 12;
-}
-
-/* intermediate breakpoints */
-@media (min-width: 480px) and (max-width: 767px) {
-  [class*="grid-"][class*="-small-1"] {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  [class*="col-"][class*="-small-1"] {
-    grid-column: auto/span 1;
-  }
-
-  [class*="grid-"][class*="-small-2"] {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  [class*="col-"][class*="-small-2"] {
-    grid-column: auto/span 2;
-  }
-
-  [class*="grid-"][class*="-small-3"] {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  [class*="col-"][class*="-small-3"] {
-    grid-column: auto/span 3;
-  }
-
-  [class*="grid-"][class*="-small-4"] {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  [class*="col-"][class*="-small-4"] {
-    grid-column: auto/span 4;
-  }
-
-  [class*="-small-all"] {
-    grid-column: 1 / -1;
-  }
-}
-
-.item-first {
-  -webkit-box-ordinal-group: 0;
-  -webkit-order: -1;
-  -ms-flex-order: -1;
-  order: -1;
-}
-
-.item-last {
-  -webkit-box-ordinal-group: 2;
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
-}
-
-.grid-offset {
-  visibility: hidden;
-}
-
-.col-all {
-  grid-column: 1 / -1;
-}
-
-.row-all {
-  grid-row: 1 / -1;
-}
-
-/* ----------------------------- */
-/* ==Media object                */
-/* ----------------------------- */
-/* recommanded HTML : <div class="media"><img class="media-figure"><div class="media-content"></div></div> */
-/* see http://codepen.io/raphaelgoetter/pen/KMWWwj */
-@media (min-width: 480px) {
-  .media {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .media-content {
-    flex: 1 1 0;
-  }
-
-  .media-figure--center {
-    align-self: center;
-  }
-
-  .media--reverse {
-    flex-direction: row-reverse;
-  }
-}
-
 /* ----------------------------- */
 /* ==skip links                  */
 /* ----------------------------- */
@@ -1787,7 +1508,7 @@ table,
 
 .table td,
 .table th {
-  min-width: 2rem;
+  width >= 2rem;
   padding: 0.3rem 0.6rem;
   cursor: default;
   text-align: left;
@@ -1932,7 +1653,7 @@ table,
   margin: 0 auto;
 }
 
-@media (min-width: 576px) {
+@media (width >= 48rem) {
   .header {
     padding: 4rem 2rem;
     border-bottom: 1px solid #979797;
@@ -2084,15 +1805,15 @@ em {
  * Layout
  */
 .bg--gray {
-  background-color: #f8f8f8;
+  background-color: #efefef;
 }
 
 .bg--dark {
-  background-color: #595759;
+  background-color: #4b4b4b;
 }
 
 .bg--darker {
-  background-color: #4a4a4a;
+  background-color: #383838;
 }
 
 .bg--dark h2,
@@ -2302,7 +2023,7 @@ pre {
 /*
  * Animation
  */
-@media (min-width: 576px) {
+@media (width >= 48rem) {
   .animated {
     -webkit-animation-name: contentSlideUp;
     animation-name: contentSlideUp;
@@ -2444,31 +2165,22 @@ pre {
   flex-shrink: 0;
 }
 
-@media (max-width: 575px) {
-  .metrics-grid .box:not(:first-child) {
-    margin-top: 2rem;
-  }
-}
-
-@media (min-width: 576px) {
-  .metrics-grid {
+.metrics-grid {
     display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-  }
+    grid-template-columns: 1fr;
+    gap: var(--spacing-m);
 
-  .metrics-title {
-    -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12);
-  }
+    @media (width >= 48rem) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width >= 80rem) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
 }
 
-@media (min-width: 1200px) {
-  .metrics-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+
 
 /*
  * Browser features section
@@ -2528,7 +2240,7 @@ pre {
   }
 }
 
-@media (min-width: 480px) {
+@media (width >= 480px) {
   .browser-features .box {
     background-image: -webkit-gradient(
       linear,
@@ -2839,9 +2551,9 @@ pre {
   }
 }
 
-@media (min-device-width: 576px) {
+@media (min-device-width: 48rem) {
   .cssdevwidth em:after {
-    content: "576px+";
+    content: "48rem+";
   }
 
   .cssdevwidthem em:after {
@@ -3089,9 +2801,9 @@ pre {
   }
 }
 
-@media (min-device-height: 576px) {
+@media (min-device-height: 48rem) {
   .cssdevheight em:after {
-    content: "576px+";
+    content: "48rem+";
   }
 
   .cssdevheightem em:after {
