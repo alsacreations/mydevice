@@ -3745,4 +3745,13 @@ th[role="columnheader"]:not(.no-sort):hover:after {
   opacity: 1;
 }
 
+[id="battery"] {
+  border-bottom: 0 !important;
+}
+
+.box .values .connection {
+  padding-inline: 1rem;
+  background: #4a4a4a;
+}
+
 /*# sourceMappingURL=maps/styles.css.map */

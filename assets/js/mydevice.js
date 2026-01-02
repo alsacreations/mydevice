@@ -202,7 +202,7 @@ for (index = 0; index < tabslinks.length; index++) {
 // --- Root font size
 var rfsstyle = parseFloat(getComputedStyle(document.documentElement).fontSize)
 document.getElementById("rfs").innerHTML =
-  "Root font size : <em>" + rfsstyle + "px</em>"
+  "Root font size&#8239;: <em>" + rfsstyle + "px</em>"
 
 // Pointer events
 if (window.navigator.pointerEnabled) {
@@ -214,32 +214,32 @@ var sw = screen.width
 var sh = screen.height
 // --- Screen and Window size
 document.getElementById("screensize").innerHTML =
-  "Taille d'écran : <em>" + sw + " x " + sh + "</em>"
+  "Taille d'écran&#8239;: <em>" + sw + " x " + sh + "</em>"
 
 var ww = window.innerWidth
 var wh = window.innerHeight
 document.getElementById("windowsize").innerHTML =
-  "Taille de fenêtre : <em>" + ww + " x " + wh + "</em>"
+  "Taille de fenêtre&#8239;: <em>" + ww + " x " + wh + "</em>"
 
 // resolution
 var jsdpi = res.dpi()
 jsdpi = parseFloat(jsdpi.toFixed(2))
 document.getElementById("jsdpi").innerHTML =
-  "Resolution (dpi) : <em>" + jsdpi + "dpi</em>"
+  "Resolution (dpi)&#8239;: <em>" + jsdpi + "dpi</em>"
 var jsdppx = res.dppx()
 jsdppx = parseFloat(jsdppx.toFixed(2))
 document.getElementById("jsdppx").innerHTML =
-  "Resolution (dppx) : <em>" + jsdppx + "dppx</em>"
+  "Resolution (dppx)&#8239;: <em>" + jsdppx + "dppx</em>"
 var jsdpcm = res.dpcm()
 jsdpcm = parseFloat(jsdpcm.toFixed(2))
 document.getElementById("jsdpcm").innerHTML =
-  "Resolution (dpcm) : <em>" + jsdpcm + "dpcm</em>"
+  "Resolution (dpcm)&#8239;: <em>" + jsdpcm + "dpcm</em>"
 
 // aspect ratio
 var deviceaspectratio = verge.aspect(screen)
 deviceaspectratio = parseFloat(deviceaspectratio.toFixed(2))
 document.getElementById("deviceaspectratio").innerHTML =
-  "Device Aspect-Ratio : <em>" + deviceaspectratio + "</em>"
+  "Device Aspect-Ratio&#8239;: <em>" + deviceaspectratio + "</em>"
 
 // viewport width
 var viewportwidth = verge.viewportW()
@@ -259,7 +259,7 @@ window.addEventListener("resize", function () {
   var ww = window.innerWidth
   var wh = window.innerHeight
   document.getElementById("windowsize").innerHTML =
-    "Taille de fenêtre : <em>" + ww + " x " + wh + "</em>"
+    "Taille de fenêtre&#8239;: <em>" + ww + " x " + wh + "</em>"
 
   // viewport width
   var viewportwidth = verge.viewportW()
@@ -293,7 +293,7 @@ var pxr =
   window.screen.availWidth / document.documentElement.clientWidth
 pxr = parseFloat(pxr.toFixed(4))
 document.getElementById("jsratio").innerHTML =
-  "Pixel ratio (JS) : <em>" + pxr + "</em>"
+  "Pixel ratio (JS)&#8239;: <em>" + pxr + "</em>"
 
 // user agent
 if (navigator.userAgent)
@@ -313,9 +313,84 @@ function displaySafeAreas() {
     .getPropertyValue("--sal")
     .trim()
 
-  document.getElementById("sat").innerHTML = "Top : <em>" + sat + "</em>"
-  document.getElementById("sar").innerHTML = "Right : <em>" + sar + "</em>"
-  document.getElementById("sab").innerHTML = "Bottom : <em>" + sab + "</em>"
-  document.getElementById("sal").innerHTML = "Left : <em>" + sal + "</em>"
+  document.getElementById("sat").innerHTML = "Top&#8239;: <em>" + sat + "</em>"
+  document.getElementById("sar").innerHTML =
+    "Right&#8239;: <em>" + sar + "</em>"
+  document.getElementById("sab").innerHTML =
+    "Bottom&#8239;: <em>" + sab + "</em>"
+  document.getElementById("sal").innerHTML = "Left&#8239;: <em>" + sal + "</em>"
 }
 displaySafeAreas()
+// Battery Status API
+function displayBatteryStatus() {
+  if ("getBattery" in navigator) {
+    navigator.getBattery().then(function (battery) {
+      var level = Math.round(battery.level * 100)
+      var charging = battery.charging ? "en charge" : "sur batterie"
+      document.getElementById("battery").innerHTML =
+        "Batterie&#8239;: <em>" + level + "% (" + charging + ")</em>"
+
+      // Update on battery change
+      battery.addEventListener("levelchange", function () {
+        var level = Math.round(battery.level * 100)
+        var charging = battery.charging ? "en charge" : "sur batterie"
+        document.getElementById("battery").innerHTML =
+          "Batterie&#8239;: <em>" + level + "% (" + charging + ")</em>"
+      })
+
+      battery.addEventListener("chargingchange", function () {
+        var level = Math.round(battery.level * 100)
+        var charging = battery.charging ? "en charge" : "sur batterie"
+        document.getElementById("battery").innerHTML =
+          "Batterie&#8239;: <em>" + level + "% (" + charging + ")</em>"
+      })
+    })
+  } else {
+    document.getElementById("battery").innerHTML =
+      "Batterie&#8239;: <em>Non supporté</em>"
+  }
+}
+displayBatteryStatus()
+
+// Network Information API
+function displayConnectionType() {
+  var connection =
+    navigator.connection ||
+    navigator.mozConnection ||
+    navigator.webkitConnection
+
+  function updateConnectionDisplay() {
+    var effectiveType = connection ? connection.effectiveType || "4g" : "4g"
+
+    // Remove all checkmarks
+    var allItems = ["conn-slow-2g", "conn-2g", "conn-3g", "conn-4g"]
+    allItems.forEach(function (id) {
+      var elem = document.getElementById(id)
+      if (elem) {
+        elem.innerHTML = elem.innerHTML.replace(" ✅", "")
+        elem.style.fontWeight = "normal"
+      }
+    })
+
+    // Add checkmark to current type
+    var currentId = "conn-" + effectiveType
+    var currentElem = document.getElementById(currentId)
+    if (currentElem) {
+      currentElem.innerHTML = currentElem.innerHTML + " ✅"
+      currentElem.style.fontWeight = "bold"
+    }
+  }
+
+  if (connection) {
+    updateConnectionDisplay()
+    // Update on connection change
+    connection.addEventListener("change", updateConnectionDisplay)
+  } else {
+    // If API not supported, show message
+    var listElem = document.getElementById("connection-list")
+    if (listElem) {
+      listElem.innerHTML = "<li><em>API non supportée</em></li>"
+    }
+  }
+}
+displayConnectionType()
