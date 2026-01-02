@@ -45,6 +45,17 @@
   --sar: env(safe-area-inset-right, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
+
+  --spacing-4: 0.25rem;
+  --spacing-8: 0.5rem;
+  --spacing-16: 1rem;
+  --spacing-24: 1.5rem;
+  --spacing-32: 2rem;
+  --spacing-48: 3rem;
+  --spacing-xs: var(--spacing-4);
+  --spacing-s: clamp(var(--spacing-8), 0.304rem + 0.8696vw, var(--spacing-16));
+  --spacing-m: clamp(var(--spacing-16), 0.609rem + 1.7391vw, var(--spacing-32));
+  --spacing-l: clamp(var(--spacing-24), 0.913rem + 2.6087vw, var(--spacing-48));
 }
 
 .discrete {
@@ -2152,12 +2163,12 @@ h3,
 
 h2,
 .h2-like {
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-l);
 }
 
 h2:not(:first-child),
 .h2-like:not(:first-child) {
-  margin-top: 3rem;
+  margin-top: var(--spacing-l);
 }
 
 em {
@@ -2413,7 +2424,7 @@ pre {
   max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
-  padding: 4rem 2rem;
+  padding: var(--spacing-l) var(--spacing-m);
 }
 
 .mw,
@@ -2695,13 +2706,13 @@ pre {
  */
 .metrics-title {
   margin: 0;
-  padding: 1.5rem 2rem;
+  padding: var(--spacing-s);
   text-transform: uppercase;
   background-color: #ba3862;
 }
 
 .metrics .values {
-  padding: 1rem;
+  padding: 0 var(--spacing-s);
 }
 
 .metrics .values li {
