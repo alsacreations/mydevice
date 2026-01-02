@@ -247,10 +247,10 @@ document.getElementById("viewportwidth").innerHTML =
   "<em>" + viewportwidth + "px</em>"
 
 // viewport width em
-var viewportwidthem = viewportwidth / rfsstyle
-viewportwidthem = viewportwidthem.toFixed(0)
-document.getElementById("viewportwidthem").innerHTML =
-  "<em>" + viewportwidthem + "em</em>"
+var viewportwidthrem = viewportwidth / rfsstyle
+viewportwidthrem = viewportwidthrem.toFixed(0)
+document.getElementById("viewportwidthrem").innerHTML =
+  "<em>" + viewportwidthrem + "rem</em>"
 
 // addEventlistener on resize
 window.addEventListener("resize", function () {
@@ -266,10 +266,10 @@ window.addEventListener("resize", function () {
   document.getElementById("viewportwidth").innerHTML =
     "<em>" + viewportwidth + "px</em>"
   // viewport width em
-  var viewportwidthem = viewportwidth / rfsstyle
-  viewportwidthem = viewportwidthem.toFixed(0)
-  document.getElementById("viewportwidthem").innerHTML =
-    "<em>" + viewportwidthem + "em</em>"
+  var viewportwidthrem = viewportwidth / rfsstyle
+  viewportwidthrem = viewportwidthrem.toFixed(0)
+  document.getElementById("viewportwidthrem").innerHTML =
+    "<em>" + viewportwidthrem + "em</em>"
 })
 
 // pixel ratio

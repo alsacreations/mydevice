@@ -3779,6 +3779,7 @@ th[role="columnheader"]:not(.no-sort):hover:after {
 }
 
 .box .values .connection {
+  margin-bottom: var(--spacing-s);
   padding-inline: 1rem;
   background: #4a4a4a;
 }
