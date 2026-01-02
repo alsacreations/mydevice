@@ -394,3 +394,43 @@ function displayConnectionType() {
   }
 }
 displayConnectionType()
+// Hover capability detection
+function detectHoverSupport() {
+  var hoverSupport = "Non"
+
+  if (window.matchMedia("(any-hover: hover)").matches) {
+    hoverSupport = "Oui"
+  } else if (window.matchMedia("(any-hover: none)").matches) {
+    hoverSupport = "Non"
+  }
+
+  document.getElementById("hover-support").innerHTML =
+    "Survol <span class='discrete'>(any-hover: hover)</span> <em>" +
+    hoverSupport +
+    "</em>"
+}
+detectHoverSupport()
+
+// Pointer type detection
+function detectPointerType() {
+  var pointerType = "Inconnu"
+
+  if (window.matchMedia("(pointer: fine)").matches) {
+    pointerValue = "fine"
+    pointerType = "Précis"
+  } else if (window.matchMedia("(pointer: coarse)").matches) {
+    pointerValue = "coarse"
+    pointerType = "Grossier"
+  } else if (window.matchMedia("(pointer: none)").matches) {
+    pointerValue = "none"
+    pointerType = "Aucun"
+  }
+
+  document.getElementById("pointer-type").innerHTML =
+    "Pointeur <span class='discrete'> (pointer:" +
+    pointerValue +
+    ")</span> <em>" +
+    pointerType +
+    "</em>"
+}
+detectPointerType()
