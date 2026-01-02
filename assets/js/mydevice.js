@@ -236,21 +236,21 @@ document.getElementById("screenheight").innerHTML =
 
 // resolution
 var jsdpi = res.dpi()
-jsdpi = jsdpi.toFixed(2)
+jsdpi = parseFloat(jsdpi.toFixed(2))
 document.getElementById("jsdpi").innerHTML =
   "Resolution (dpi) : <em>" + jsdpi + "dpi</em>"
 var jsdppx = res.dppx()
-jsdppx = jsdppx.toFixed(2)
+jsdppx = parseFloat(jsdppx.toFixed(2))
 document.getElementById("jsdppx").innerHTML =
   "Resolution (dppx) : <em>" + jsdppx + "dppx</em>"
 var jsdpcm = res.dpcm()
-jsdpcm = jsdpcm.toFixed(2)
+jsdpcm = parseFloat(jsdpcm.toFixed(2))
 document.getElementById("jsdpcm").innerHTML =
   "Resolution (dpcm) : <em>" + jsdpcm + "dpcm</em>"
 
 // aspect ratio
 var deviceaspectratio = verge.aspect(screen)
-deviceaspectratio = deviceaspectratio.toFixed(2)
+deviceaspectratio = parseFloat(deviceaspectratio.toFixed(2))
 document.getElementById("deviceaspectratio").innerHTML =
   "Device Aspect-Ratio : <em>" + deviceaspectratio + "</em>"
 
@@ -297,7 +297,7 @@ window.addEventListener("resize", function () {
 var pxr =
   window.devicePixelRatio ||
   window.screen.availWidth / document.documentElement.clientWidth
-pxr = pxr.toFixed(4)
+pxr = parseFloat(pxr.toFixed(4))
 document.getElementById("jsratio").innerHTML =
   "JS pixel-ratio : <em>" + pxr + "</em>"
 
