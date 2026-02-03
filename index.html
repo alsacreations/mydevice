@@ -80,47 +80,70 @@
 
           <div class="metrics-grid">
             <div class="box bg--dark">
-              <h3 class="metrics-title">Basiques</h3>
+              <h3 class="metrics-title">Écran</h3>
               <ul class="unstyled values">
                 <li id="screensize">Taille d'écran <em></em></li>
                 <li id="windowsize">Taille de fenêtre <em></em></li>
-                <li id="rfs">Taille de police racine <em></em></li>
+
+
+                <li class="cssratio">Pixel ratio (CSS) <em></em></li>
+                <li id="jsratio">Pixel ratio (JS) <em></em></li>
+                <li id="deviceaspectratio">Device aspect-ratio <em></em></li>
+                <li id="jsdpi">Résolution (dpi) <em></em></li>
+                <li id="jsdppx">Résolution (dppx) <em></em></li>
+              </ul>
+            </div>
+
+            <div class="box bg--dark">
+              <h3 class="metrics-title">Device</h3>
+              <ul class="unstyled values">
+                <li id="browser-version">Navigateur <em></em></li>
+                <li id="os">OS <em></em></li>
+                <li id="os-version">Version <em></em></li>
+                <li id="mobile-status">Mobile <em></em></li>
                 <li class="cssorient">Orientation <em></em></li>
               </ul>
             </div>
 
+
+
+
+
+
+
             <div class="box bg--dark">
-              <h3 class="metrics-title">Ratios</h3>
+              <h3 class="metrics-title">CSS</h3>
               <ul class="unstyled values">
-                <li class="cssratio">Pixel ratio (CSS) <em></em></li>
-                <li id="jsratio">Pixel ratio (JS) <em></em></li>
-                <li id="deviceaspectratio">Device ratio <em></em></li>
+                <li id="rfs">Root font size <em></em></li>
+                <li id="css-grid">Grid Layout <em></em></li>
+                <li id="css-vf">Variable Fonts <em></em></li>
+                <li id="color-mode">Mode de couleur <em></em></li>
+                <li id="reduced-motion">Animations réduites <em></em></li>
               </ul>
             </div>
 
             <div class="box bg--dark">
-              <h3 class="metrics-title">Densité</h3>
+              <h3 class="metrics-title">Géolocalisation</h3>
               <ul class="unstyled values">
-                <li id="jsdpi">Résolution (dpi) <em></em></li>
-                <li id="jsdppx">Résolution (dppx) <em></em></li>
-                <li id="jsdpcm">Résolution (dpcm) <em></em></li>
+                <li id="timezone">Fuseau Horaire <em></em></li>
+                <li id="country">Pays <em></em></li>
+                <li id="city">Ville <em></em></li>
               </ul>
             </div>
 
             <div class="box bg--dark">
-              <h3 class="metrics-title">Safe Areas (Encoches)</h3>
+              <h3 class="metrics-title">Réseau</h3>
               <ul class="unstyled values">
-                <li id="sat">Top <em></em></li>
-                <li id="sar">Right <em></em></li>
-                <li id="sab">Bottom <em></em></li>
-                <li id="sal">Left <em></em></li>
+                <li id="isp">Fournisseur d'accès <em></em></li>
+                <li id="connection-type" class="data-grid">Connexion (type) <em></em></li>
+                <li id="connection-effective-type" class="data-grid">Connexion (vitesse) <em></em></li>
               </ul>
             </div>
 
             <div class="box bg--dark">
               <h3 class="metrics-title">Divers</h3>
               <ul class="unstyled values">
-                <li id="browser-version">Navigateur <em></em></li>
+
                 <li id="battery">Batterie <em></em></li>
                 <li
                   id="hover-support"
@@ -132,16 +155,7 @@
                   class="data-grid">
                   Pointeur <em></em>
                 </li>
-                <li class="connection">
-                  <ul
-                    class="unstyled"
-                    id="connection-list"
-                    style="margin-top: 0; margin-left: 0">
-                    <li id="conn-2g">2g : &gt;&#8239;0.25 Mbps</li>
-                    <li id="conn-3g">3g : &gt;&#8239;0.7 Mbps</li>
-                    <li id="conn-4g">4g : &gt;&#8239;10 Mbps</li>
-                  </ul>
-                </li>
+
               </ul>
             </div>
           </div>

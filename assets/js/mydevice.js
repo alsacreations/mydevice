@@ -230,16 +230,13 @@ var jsdppx = res.dppx()
 jsdppx = parseFloat(jsdppx.toFixed(2))
 document.getElementById("jsdppx").innerHTML =
   "Resolution (dppx) <em>" + jsdppx + "dppx</em>"
-var jsdpcm = res.dpcm()
-jsdpcm = parseFloat(jsdpcm.toFixed(2))
-document.getElementById("jsdpcm").innerHTML =
-  "Resolution (dpcm) <em>" + jsdpcm + "dpcm</em>"
+
 
 // aspect ratio
 var deviceaspectratio = verge.aspect(screen)
 deviceaspectratio = parseFloat(deviceaspectratio.toFixed(2))
 document.getElementById("deviceaspectratio").innerHTML =
-  "Device Aspect-Ratio <em>" + deviceaspectratio + "</em>"
+  "Device aspect ratio <em>" + deviceaspectratio + "</em>"
 
 // viewport width
 var viewportwidth = verge.viewportW()
@@ -254,7 +251,6 @@ document.getElementById("viewportwidthrem").innerHTML =
 
 // addEventlistener on resize
 window.addEventListener("resize", function () {
-  displaySafeAreas()
   // Window size
   var ww = window.innerWidth
   var wh = window.innerHeight
@@ -283,27 +279,7 @@ document.getElementById("jsratio").innerHTML =
 // user agent
 if (navigator.userAgent)
   document.getElementById("ua").innerHTML = navigator.userAgent
-// Safe Areas
-function displaySafeAreas() {
-  var sat = getComputedStyle(document.documentElement)
-    .getPropertyValue("--sat")
-    .trim()
-  var sar = getComputedStyle(document.documentElement)
-    .getPropertyValue("--sar")
-    .trim()
-  var sab = getComputedStyle(document.documentElement)
-    .getPropertyValue("--sab")
-    .trim()
-  var sal = getComputedStyle(document.documentElement)
-    .getPropertyValue("--sal")
-    .trim()
 
-  document.getElementById("sat").innerHTML = "Top <em>" + sat + "</em>"
-  document.getElementById("sar").innerHTML = "Right <em>" + sar + "</em>"
-  document.getElementById("sab").innerHTML = "Bottom <em>" + sab + "</em>"
-  document.getElementById("sal").innerHTML = "Left <em>" + sal + "</em>"
-}
-displaySafeAreas()
 // Battery Status API
 function displayBatteryStatus() {
   if ("getBattery" in navigator) {
@@ -343,24 +319,21 @@ function displayConnectionType() {
     navigator.webkitConnection
 
   function updateConnectionDisplay() {
-    var effectiveType = connection ? connection.effectiveType || "4g" : "4g"
+    var type = connection.type || "inconnu"
+    var downlink = connection.downlink ? connection.downlink + " Mbps" : "inconnu"
 
-    // Remove all checkmarks
-    var allItems = ["conn-slow-2g", "conn-2g", "conn-3g", "conn-4g"]
-    allItems.forEach(function (id) {
-      var elem = document.getElementById(id)
-      if (elem) {
-        elem.innerHTML = elem.innerHTML.replace(" ✅", "")
-        elem.style.fontWeight = "normal"
-      }
-    })
+    var typeElem = document.getElementById("connection-type")
+    if (typeElem) {
+      typeElem.innerHTML =
+        "Connexion <span class='discrete'>(type)</span> <em>" + type + "</em>"
+    }
 
-    // Add checkmark to current type
-    var currentId = "conn-" + effectiveType
-    var currentElem = document.getElementById(currentId)
-    if (currentElem) {
-      currentElem.innerHTML = currentElem.innerHTML + " ✅"
-      currentElem.style.fontWeight = "bold"
+    var effectiveTypeElem = document.getElementById("connection-effective-type")
+    if (effectiveTypeElem) {
+      effectiveTypeElem.innerHTML =
+        "Connexion <span class='discrete'>(vitesse)</span> <em>" +
+        downlink +
+        "</em>"
     }
   }
 
@@ -369,11 +342,12 @@ function displayConnectionType() {
     // Update on connection change
     connection.addEventListener("change", updateConnectionDisplay)
   } else {
-    // If API not supported, show message
-    var listElem = document.getElementById("connection-list")
-    if (listElem) {
-      listElem.innerHTML = "<li><em>API non supportée</em></li>"
-    }
+    var typeElem = document.getElementById("connection-type")
+    if (typeElem) typeElem.innerHTML = "Connexion (type) <em>Non supporté</em>"
+
+    var effectiveTypeElem = document.getElementById("connection-effective-type")
+    if (effectiveTypeElem)
+      effectiveTypeElem.innerHTML = "Connexion (vitesse) <em>Non supporté</em>"
   }
 }
 displayConnectionType()
@@ -448,9 +422,108 @@ function detectBrowserVersion() {
     bVer = ua.indexOf("MSIE") > -1 ? ua.substring(ua.indexOf("MSIE") + 5) : "11"
   }
 
+// CSS Features Support
+function displayCSSSupport() {
+  // Grid Layout
+  var gridSupport = CSS.supports("display: grid") ? "Oui" : "Non"
+  document.getElementById("css-grid").innerHTML =
+    "Grid Layout <em>" + gridSupport + "</em>"
+
+  // Variable Fonts
+  var vfSupport = CSS.supports("font-variation-settings: normal") ? "Oui" : "Non"
+  document.getElementById("css-vf").innerHTML =
+    "Variable Fonts <em>" + vfSupport + "</em>"
+
+  // Color Scheme
+  var colorMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "Dark"
+    : "Light"
+  document.getElementById("color-mode").innerHTML =
+    "Mode de couleur <em>" + colorMode + "</em>"
+
+  // Reduced Motion
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    .matches
+    ? "Oui"
+    : "Non"
+  document.getElementById("reduced-motion").innerHTML =
+    "Animations réduites <em>" + reducedMotion + "</em>"
+}
+displayCSSSupport()
+
   if (bVer.indexOf(" ") > -1) bVer = bVer.substring(0, bVer.indexOf(" "))
 
   document.getElementById("browser-version").innerHTML =
     "Navigateur <em>" + bName + " " + bVer + "</em>"
 }
 detectBrowserVersion()
+
+// Geolocation API
+function displayGeolocation() {
+  // Timezone
+  try {
+    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    document.getElementById("timezone").innerHTML =
+      "Fuseau Horaire <em>" + timezone + "</em>"
+  } catch (e) {
+    document.getElementById("timezone").innerHTML =
+      "Fuseau Horaire <em>Non supporté</em>"
+  }
+
+  // IP Geolocation
+  // Using ipwho.is for free JSON API over HTTPS without key
+  fetch("https://ipwho.is/")
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      if (data.success) {
+        document.getElementById("country").innerHTML =
+          "Pays <em>" + data.country + "</em>"
+        document.getElementById("city").innerHTML =
+          "Ville <em>" + data.city + "</em>"
+        document.getElementById("isp").innerHTML =
+          "Fournisseur d'accès <em>" + data.connection.isp + "</em>"
+      } else {
+        document.getElementById("country").innerHTML =
+          "Pays <em>Indisponible</em>"
+        document.getElementById("city").innerHTML =
+          "Ville <em>Indisponible</em>"
+        document.getElementById("isp").innerHTML =
+          "Fournisseur d'accès <em>Indisponible</em>"
+      }
+    })
+    .catch(function (error) {
+      console.error("Error fetching geolocation:", error)
+      document.getElementById("country").innerHTML = "Pays <em>Erreur</em>"
+      document.getElementById("city").innerHTML = "Ville <em>Erreur</em>"
+      document.getElementById("isp").innerHTML =
+        "Fournisseur d'accès <em>Erreur</em>"
+    })
+}
+displayGeolocation()
+
+// Device API (Client Hints)
+function displayDeviceDetails() {
+  if (navigator.userAgentData) {
+    var isMobile = navigator.userAgentData.mobile ? "Oui" : "Non"
+    document.getElementById("mobile-status").innerHTML =
+      "Mobile <em>" + isMobile + "</em>"
+
+    navigator.userAgentData
+      .getHighEntropyValues(["platform", "platformVersion"])
+      .then(function (ua) {
+        document.getElementById("os").innerHTML =
+          "OS <em>" + ua.platform + "</em>"
+        document.getElementById("os-version").innerHTML =
+          "Version <em>" + ua.platformVersion + "</em>"
+      })
+  } else {
+    document.getElementById("mobile-status").innerHTML =
+      "Mobile <em>Non supporté</em>"
+    document.getElementById("os").innerHTML = "OS <em>Non supporté</em>"
+    document.getElementById("os-version").innerHTML =
+      "Version <em>Non supporté</em>"
+  }
+}
+displayDeviceDetails()
