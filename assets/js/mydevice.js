@@ -434,6 +434,38 @@ function displayCSSSupport() {
   document.getElementById("css-vf").innerHTML =
     "Variable Fonts <em>" + vfSupport + "</em>"
 
+  // Anchor Positioning
+  var anchorSupport = CSS.supports("anchor-name: --a") ? "Oui" : "Non"
+  document.getElementById("css-anchor").innerHTML =
+    "Anchor Positioning <em>" + anchorSupport + "</em>"
+
+  // Container Queries
+  var containerSupport = CSS.supports("container-type: inline-size")
+    ? "Oui"
+    : "Non"
+  document.getElementById("css-container").innerHTML =
+    "Container Queries <em>" + containerSupport + "</em>"
+
+  // Custom Media Queries
+  var customMediaSupport = "Non"
+  try {
+    var style = document.createElement("style")
+    style.textContent =
+      "@custom-media --test (min-width: 0px); @media (--test) { :root { --custom-media-test: 1; } }"
+    document.head.appendChild(style)
+    var val = getComputedStyle(document.documentElement).getPropertyValue(
+      "--custom-media-test",
+    )
+    document.head.removeChild(style)
+    if (val && val.trim() === "1") {
+      customMediaSupport = "Oui"
+    }
+  } catch (e) {
+    console.error(e)
+  }
+  document.getElementById("css-custom-media").innerHTML =
+    "Custom Media Queries <em>" + customMediaSupport + "</em>"
+
   // Color Scheme
   var colorMode = window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "Dark"
