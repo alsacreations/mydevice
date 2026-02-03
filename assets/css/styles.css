@@ -2431,13 +2431,13 @@ pre {
 
 @media (orientation: landscape) {
   .cssorient em:after {
-    content: "landscape";
+    content: "Landscape";
   }
 }
 
 @media (orientation: portrait) {
   .cssorient em:after {
-    content: "portrait";
+    content: "Portrait";
   }
 }
 
